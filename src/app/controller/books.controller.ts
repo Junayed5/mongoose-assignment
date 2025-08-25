@@ -5,16 +5,31 @@ export const booksRouter = express.Router();
 
 booksRouter.get("/", async (req: Request, res: Response) => {
   try {
-    const data = await Book.find();
+    let { filter, sortBy, sort, limit }: any = req.query;
+
+    // defaults
+    const query: any = {};
+    limit = limit ? parseInt(limit as string, 10) : 10;
+    sortBy = sortBy ? (sortBy as string) : "createdAt";
+    sort = sort === "asc" ? 1 : -1;
+
+    // filter by genre if provided
+    if (filter) {
+      query.genre = filter;
+    }
+
+    const data = await Book.find(query)
+      .sort({ [sortBy]: sort })
+      .limit(limit);
 
     res.status(200).json({
       success: true,
-      message: "Book retrieved successfully",
+      message: "Books retrieved successfully",
       data,
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({
+    console.error(error);
+    res.status(500).json({
       message: "Validation failed",
       success: false,
       error,
@@ -33,7 +48,7 @@ booksRouter.get("/:bookId", async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({
+    res.status(500).json({
       message: "Validation failed",
       success: false,
       error,
@@ -53,7 +68,7 @@ booksRouter.post("/", async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({
+    res.status(500).json({
       message: "Validation failed",
       success: false,
       error,
@@ -73,7 +88,7 @@ booksRouter.patch("/:bookId", async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({
+    res.status(500).json({
       message: "Validation failed",
       success: false,
       error,
@@ -93,7 +108,7 @@ booksRouter.delete("/:bookId", async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({
+    res.status(500).json({
       message: "Validation failed",
       success: false,
       error,

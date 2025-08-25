@@ -8,7 +8,7 @@ borrowRouter.post("/", async (req: Request, res: Response) => {
   try {
     const { book, quantity, dueDate } = req.body;
 
-    const bookFind = await Book.findById(book);
+    const bookFind: any = await Book.findById(book);
 
     if (bookFind?.copies < quantity) {
       return res
@@ -16,7 +16,7 @@ borrowRouter.post("/", async (req: Request, res: Response) => {
         .json({ success: false, message: "Not enough copies available" });
     }
 
-    bookFind?.copies -= quantity;
+    bookFind.copies -= quantity;
 
     if (bookFind?.copies === 0) {
       bookFind.available = false;
@@ -82,7 +82,7 @@ borrowRouter.get("/", async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({
+    res.status(500).json({
       message: "Validation failed",
       success: false,
       error,
