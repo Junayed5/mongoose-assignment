@@ -16,7 +16,7 @@ exports.booksRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const books_models_1 = require("../models/books.models");
 exports.booksRouter = express_1.default.Router();
-exports.booksRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.booksRouter.get("/books", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { filter, sortBy, sort, limit } = req.query;
         // defaults
@@ -46,7 +46,7 @@ exports.booksRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, fun
         });
     }
 }));
-exports.booksRouter.get("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.booksRouter.get("/books/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
         const data = yield books_models_1.Book.findById(bookId);
@@ -65,7 +65,7 @@ exports.booksRouter.get("/:bookId", (req, res) => __awaiter(void 0, void 0, void
         });
     }
 }));
-exports.booksRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.booksRouter.post("/books", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
         const data = yield books_models_1.Book.create(body);
@@ -84,7 +84,7 @@ exports.booksRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, fu
         });
     }
 }));
-exports.booksRouter.patch("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.booksRouter.patch("/books/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
         const body = req.body;
@@ -104,7 +104,7 @@ exports.booksRouter.patch("/:bookId", (req, res) => __awaiter(void 0, void 0, vo
         });
     }
 }));
-exports.booksRouter.delete("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.booksRouter.delete("/books/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
         const body = req.body;

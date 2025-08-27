@@ -17,7 +17,7 @@ const express_1 = __importDefault(require("express"));
 const borrow_models_1 = require("../models/borrow.models");
 const books_models_1 = require("../models/books.models");
 exports.borrowRouter = express_1.default.Router();
-exports.borrowRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.borrowRouter.post("/borrow", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { book, quantity, dueDate } = req.body;
         const bookFind = yield books_models_1.Book.findById(book);
@@ -52,7 +52,7 @@ exports.borrowRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, f
         });
     }
 }));
-exports.borrowRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.borrowRouter.get("/borrow", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const summary = yield borrow_models_1.Borrow.aggregate([
             {
