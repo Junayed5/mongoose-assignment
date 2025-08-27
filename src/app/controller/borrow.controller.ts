@@ -4,7 +4,7 @@ import { Book } from "../models/books.models";
 
 export const borrowRouter = express.Router();
 
-borrowRouter.post("/", async (req: Request, res: Response) => {
+borrowRouter.post("/borrow", async (req: Request, res: Response) => {
   try {
     const { book, quantity, dueDate } = req.body;
 
@@ -47,7 +47,7 @@ borrowRouter.post("/", async (req: Request, res: Response) => {
   }
 });
 
-borrowRouter.get("/", async (req: Request, res: Response) => {
+borrowRouter.get("/borrow", async (req: Request, res: Response) => {
   try {
     const summary = await Borrow.aggregate([
       {

@@ -3,7 +3,7 @@ import { Book } from "../models/books.models";
 
 export const booksRouter = express.Router();
 
-booksRouter.get("/", async (req: Request, res: Response) => {
+booksRouter.get("/books", async (req: Request, res: Response) => {
   try {
     let { filter, sortBy, sort, limit }: any = req.query;
 
@@ -36,7 +36,7 @@ booksRouter.get("/", async (req: Request, res: Response) => {
     });
   }
 });
-booksRouter.get("/:bookId", async (req: Request, res: Response) => {
+booksRouter.get("/books/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
     const data = await Book.findById(bookId);
@@ -56,7 +56,7 @@ booksRouter.get("/:bookId", async (req: Request, res: Response) => {
   }
 });
 
-booksRouter.post("/", async (req: Request, res: Response) => {
+booksRouter.post("/books", async (req: Request, res: Response) => {
   try {
     const body = req.body;
     const data = await Book.create(body);
@@ -75,7 +75,7 @@ booksRouter.post("/", async (req: Request, res: Response) => {
     });
   }
 });
-booksRouter.patch("/:bookId", async (req: Request, res: Response) => {
+booksRouter.patch("/books/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
     const body = req.body;
@@ -95,7 +95,7 @@ booksRouter.patch("/:bookId", async (req: Request, res: Response) => {
     });
   }
 });
-booksRouter.delete("/:bookId", async (req: Request, res: Response) => {
+booksRouter.delete("/books/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
     const body = req.body;
