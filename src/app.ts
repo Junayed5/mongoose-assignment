@@ -7,9 +7,10 @@ export const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://bookshelf-f1gw7xqv5-junayed5s-projects.vercel.app"],
+    origin: ["https://bookshelf-lemon-pi.vercel.app"],
   })
 );
+// ""
 app.use("/api", booksRouter);
 app.use("/api", borrowRouter);
 

@@ -20,8 +20,9 @@ const cors_1 = __importDefault(require("cors"));
 exports.app = (0, express_1.default)();
 exports.app.use(express_1.default.json());
 exports.app.use((0, cors_1.default)({
-    origin: ["https://bookshelf-f1gw7xqv5-junayed5s-projects.vercel.app"],
+    origin: ["https://bookshelf-lemon-pi.vercel.app"],
 }));
+// ""
 exports.app.use("/api", books_controller_1.booksRouter);
 exports.app.use("/api", borrow_controller_1.borrowRouter);
 exports.app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
