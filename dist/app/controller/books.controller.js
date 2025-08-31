@@ -84,7 +84,7 @@ exports.booksRouter.post("/books", (req, res) => __awaiter(void 0, void 0, void 
         });
     }
 }));
-exports.booksRouter.patch("/books/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.booksRouter.put("/books/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
         const body = req.body;

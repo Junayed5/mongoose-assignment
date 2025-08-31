@@ -15,17 +15,17 @@ const bookSchema = new Schema<IBooks>(
       type: String,
       required: true,
       uppercase: true,
-      enum: {
-        values: [
-          "FICTION",
-          "NON_FICTION",
-          "SCIENCE",
-          "HISTORY",
-          "BIOGRAPHY",
-          "FANTASY",
-        ],
-        message: "You give ${VALUE}, is note correct",
-      },
+      // enum: {
+      //   values: [
+      //     "FICTION",
+      //     "NON_FICTION",
+      //     "SCIENCE",
+      //     "HISTORY",
+      //     "BIOGRAPHY",
+      //     "FANTASY",
+      //   ],
+      //   message: "You give ${VALUE}, is note correct",
+      // },
     },
     isbn: {
       type: String,
@@ -45,6 +45,7 @@ const bookSchema = new Schema<IBooks>(
     available: {
       type: Boolean,
       required: true,
+      default: true
     },
   },
   {
